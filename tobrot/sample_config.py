@@ -69,17 +69,17 @@ class Config(object):
     
     #if Config.HEROKU_API_KEY:
         #LOGGER.info("Checking Heroku App...")
-    for heroku_app in heroku3.from_key(Config.HEROKU_API_KEY).apps():
-        if (heroku_app and Config.HEROKU_APP_NAME
-                and heroku_app.name == Config.HEROKU_APP_NAME):
+    for heroku_app in heroku3.from_key(HEROKU_API_KEY).apps():
+        if (heroku_app and HEROKU_APP_NAME
+                and heroku_app.name == HEROKU_APP_NAME):
             LOGGER.info("Heroku App : %s Found...", heroku_app.name)
-            Config.HEROKU_APP = heroku_app
-            Config.HEROKU_GIT_URL = heroku_app.git_url.replace(
-                "https://", "https://api:" + Config.HEROKU_API_KEY + "@")
+            HEROKU_APP = heroku_app
+            HEROKU_GIT_URL = heroku_app.git_url.replace(
+                "https://", "https://api:" + HEROKU_API_KEY + "@")
             if not os.path.isdir(os.path.join(os.getcwd(), '.git')):
                 tmp_heroku_git_path = os.path.join(os.getcwd(), 'tmp_heroku_git')
                # _LOG.info("Cloning Heroku GIT...")
-                Repo.clone_from(Config.HEROKU_GIT_URL, tmp_heroku_git_path)
+                Repo.clone_from(HEROKU_GIT_URL, tmp_heroku_git_path)
                 shutil.move(os.path.join(tmp_heroku_git_path, '.git'), os.getcwd())
                 shutil.rmtree(tmp_heroku_git_path)
             break
@@ -89,10 +89,10 @@ try:
     _REPO = Repo()
 except InvalidGitRepositoryError:
     _REPO = Repo.init()
-if Config.UPSTREAM_REMOTE not in _REPO.remotes:
-    _REPO.create_remote(Config.UPSTREAM_REMOTE, Config.UPSTREAM_REPO)
+if UPSTREAM_REMOTE not in _REPO.remotes:
+    _REPO.create_remote(UPSTREAM_REMOTE, UPSTREAM_REPO)
 try:
-    _REPO.remote(Config.UPSTREAM_REMOTE).fetch()
+    _REPO.remote(UPSTREAM_REMOTE).fetch()
 except GitCommandError as error:
-    LOGGER.error(error)
+    print(error)
     sys.exit()
