@@ -60,6 +60,7 @@ class Config(object):
     DESTINATION_FOLDER = os.environ.get("DESTINATION_FOLDER", "TorrentLeech-Gdrive")
     GLEECH_COMMAND = os.environ.get("GLEECH_COMMAND", "gleech")
     INDEX_LINK = os.environ.get("INDEX_LINK", "")
+    HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", None)
     TELEGRAM_LEECH_COMMAND_G = os.environ.get("TELEGRAM_LEECH_COMMAND_G", "tleech")
     UPSTREAM_REPO = os.environ.get("UPSTREAM_REPO", "https://github.com/gautamajay52/TorrentLeech-Gdrive")
     HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY", None)
