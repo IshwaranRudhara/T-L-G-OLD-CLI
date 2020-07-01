@@ -67,8 +67,8 @@ class Config(object):
     HEROKU_APP = None
     HEROKU_GIT_URL = None
     
-    if Config.HEROKU_API_KEY:
-    LOGGER.info("Checking Heroku App...")
+    #if Config.HEROKU_API_KEY:
+        #LOGGER.info("Checking Heroku App...")
     for heroku_app in heroku3.from_key(Config.HEROKU_API_KEY).apps():
         if (heroku_app and Config.HEROKU_APP_NAME
                 and heroku_app.name == Config.HEROKU_APP_NAME):
