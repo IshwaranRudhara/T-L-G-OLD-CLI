@@ -8,3 +8,4 @@ tgcrypto
 git+https://github.com/FaArIsH/youtube-dl
 heroku3
 gitpython
+python-dotenv
